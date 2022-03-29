@@ -4,38 +4,55 @@ public class TenMinutesWalk {
     public TenMinutesWalk(int time){
         this.time = time;
     }
+
     public boolean isValid(char[] walk) {
         int midway = walk.length / 2;
         int minute = 0;
+        int zamanRaftBargasht = 2;
         for (int index = 0; index < midway; index++){
-            if (ayaDarRastaye_Y_MasirRaftVaBargashtSahihAst(walk[index], walk[index + midway])){
-                minute += 2;
-            }else if (ayaDarRastaye_X_MasirRaftVaBargashtSahihAst(walk[index], walk[index + midway])){
-                minute += 2;
+            int masireRaft = midway - index - 1;
+            int masireBargasht = midway + index;
+
+            if (ayaMasireRaftVaBargashtYekiAst(walk[masireRaft], walk[masireBargasht])){
+                minute += zamanRaftBargasht;
             }
         }
         return minute == time;
     }
 
 
-    private boolean ayaDarRastaye_Y_MasirRaftVaBargashtSahihAst(char walkDirection, char midwayDirection) {
+
+    private boolean ayaMasireRaftVaBargashtYekiAst(char jahateRaft, char jahateBargasht) {
         boolean result = false;
-        if(walkDirection == 'n' && midwayDirection == 's'){
+
+        if(ayaJahatRaftNorthVaJahatBargashtSouthAst(jahateRaft, jahateBargasht)){
             result = true;
-        }else if (walkDirection == 's' && midwayDirection== 'n'){
+        }
+        else if (ayaJahatRaftSouthVaJahtBargashtNorthAst(jahateRaft, jahateBargasht)){
+            result = true;
+        }
+        else if(ayaJahatRaftWestVaJahatBargashtEstAst(jahateRaft, jahateBargasht)){
+            result = true;
+        }
+        else if (ayaJahatRaftEstVaJahatBargashtWestAst(jahateRaft, jahateBargasht)){
             result = true;
         }
         return result;
     }
 
-    private boolean ayaDarRastaye_X_MasirRaftVaBargashtSahihAst(char walkDirection, char midwayDirection) {
-        boolean result = false;
-        if(walkDirection == 'w' && midwayDirection == 'e'){
-            result = true;
-        }else if (walkDirection == 'e' && midwayDirection== 'w'){
-            result = true;
-        }
-        return result;
+    private boolean ayaJahatRaftEstVaJahatBargashtWestAst(char jahateRaft, char jahateBargasht) {
+        return jahateRaft == 'e' && jahateBargasht== 'w';
     }
 
+    private boolean ayaJahatRaftWestVaJahatBargashtEstAst(char jahateRaft, char jahateBargasht) {
+        return jahateRaft == 'w' && jahateBargasht == 'e';
+    }
+
+    private boolean ayaJahatRaftSouthVaJahtBargashtNorthAst(char jahateRaft, char jahateBargasht) {
+        return jahateRaft == 's' && jahateBargasht== 'n';
+    }
+
+    private boolean ayaJahatRaftNorthVaJahatBargashtSouthAst(char jahateRaft, char jahateBargasht) {
+        return jahateRaft == 'n' && jahateBargasht == 's';
+    }
 }
