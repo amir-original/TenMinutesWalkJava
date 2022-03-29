@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TenMinutesWalkTest {
 
     @Test
-    void Bayad_Check_Konad_Ke_PiadeRavi_10_Daghighan_Daghighe_Tol_Bekeshad_Va_Be_Noghte_Shoro_Baz_Gardad() {
+    void Bayad_Barname_Check_Konad_Ke_PiadeRavi_Daghighan_10_Daghighe_Tol_Bekeshad_Va_Be_Noghte_Shoro_Baz_Gardad() {
         TenMinutesWalk tenMinutesWalk = new TenMinutesWalk(10);
         char[] walkDirections1 = {'w'};
         char[] walkDirections2 = {'n','s','n','s','n','s','n','s','n','s'};
